@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ngoni Rust"
+  short_description: "Build production Rust services the Ngoni way"
+  default_prompt: "Use $ngoni-rust to design and implement this Rust service with the right backend, live transport, frontend stack, and verification."

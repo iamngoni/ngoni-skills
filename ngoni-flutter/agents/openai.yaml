@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ngoni Flutter"
+  short_description: "BLoC, Freezed and reusable Flutter coding rules"
+  default_prompt: "Use $ngoni-flutter to build or review Flutter code in my established style."
