@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ngoni Marketing Video"
+  short_description: "Make cheap, real-looking app ad videos that drive subscriptions"
+  default_prompt: "Use $ngoni-marketing-video to pitch, script and render square app ad videos with real people, real app screens, feature highlights and a tracked AI budget."
