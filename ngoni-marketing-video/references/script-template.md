@@ -1,38 +1,43 @@
 # Templates
 
-## Pitch (one per idea, for owner approval)
+## Pitch (one per idea, sent to the owner for approval)
 
 ```
-N. **"Title" (feature).** Audience.
+N. **"Title" (feature).** Audience segment.
    - Hook: *"One line, readable in 2 seconds."*
-   - Story: 3–5 beats, what the viewer sees the app do.
-   - Screens: have / need.  AI hero shot: yes (what moment) / no.  Cost: ~$0.005 / ~$0.40.
+   - Story: 3–5 beats showing what the viewer sees the product do.
+   - Screens: have / need.  AI hero shot: yes (which moment) / no.  Cost: ~$0.01 / ~$0.40.
 ```
 
-End with a recommended top 3 and order (dated hooks first), then stop and ask which to make.
+End with a recommended top 3 and an order, putting dated or seasonal hooks first. Then stop and ask which ones to make.
 
-## Script (one note per video)
+## Script (one entry per video)
 
 ```
 # ID · "Title" · audience · ~NN s · STATUS (backlog / approved #n / rendered) · post date
 
 **Hook:** "…"
-**Who:** people on screen (stock / AI hero shot).
+**Who:** the people on screen (stock / AI hero shot).
 
 **Voiceover**
-1. …  (5–7 lines, last line = trial line)
+1. …  (5–7 lines; the last line is the offer or call to action)
 
 **Hook caption:** "…"
-**Screens:** capture ids/files (captured / still needed with exact state).
-**Highlights:** mark list — what gets ringed, spotlit, counted up.
+**Screens:** capture ids or files (captured / still needed, with the exact state).
+**Highlights:** the mark list: what gets ringed, spotlit or counted up.
 **Claims:** what must not be said; figures that must match the capture; qualifiers to keep on screen.
-**File / cost:** renders/…-square.mp4 · $0.00x   (after render)
+**File / cost:** renders/…  · $0.00x   (after render)
 **To check:** lines the transcriber misheard; brands to paint out.
 ```
 
-## Hooks that worked (Dueo)
+## Hook patterns
 
-- Payday timing: "It's the 25th. Before you tap anything…", "Black Friday is 2 days after payday. Check one number first."
-- A relatable number: "You lent a friend R2,200. Where's that written down?"
-- A question the app answers: "Can we afford the trip in December?"
-- A pain line: "A credit card and a store account. They never seem to shrink."
+- **A timely moment:** a payday, a holiday, a sale day or a deadline the audience is already living.
+- **A relatable number:** one specific, slightly uncomfortable figure.
+- **A question the product answers:** in the user's own words, typed on screen.
+- **A pain line:** the everyday annoyance, said plainly.
+- **POV:** "POV: it's <moment> and <problem>."
+
+The hook must be readable at frame 0, inside the middle 80% of the frame, with no logo intro.
+
+See `examples/dueo-series/README.md` for hooks that worked on a real project.

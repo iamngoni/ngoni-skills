@@ -1,50 +1,74 @@
 # Pipeline
 
-Proven on Dueo (Nov 2026, Apple silicon Mac, 24 GB). Times are wall clock.
+First proven on a mobile app series (Nov 2026, Apple silicon Mac, 24 GB). Model names and prices change; re-check them before each project.
 
 ## 1. People: licensed stock first
 
-- **Pexels** (Pexels License, no attribution, commercial use). `curl` on www.pexels.com gets 403 — open clip pages with a web fetch, take the author and the `videos.pexels.com/video-files/<id>/<id>-<variant>.mp4` URL, then cut only the seconds you need with `scripts/stock_segment.sh` (no full download).
-- Record every clip in `licenses.md`: id, author, URL, seconds used.
-- Vet for: candid, no watermark, no visible brands, audience fit (region, age, household type). Phones in stock face the people or are black — don't composite screens onto them; cut to the Blender phone instead.
-- Backups: Mixkit (thin on African households). Avoid Coverr and stock aggregators that mix in AI or watermarked clips. HeyGen stock search: mood boards only (low-res, unclear licence).
-- Vary who's on screen across a series: people on their own, families, flatmates/friends, couples.
+- **Pexels** (Pexels License, no attribution needed, commercial use allowed).
+  - `curl` gets a 403 on www.pexels.com, so open clip pages with a web fetch instead.
+  - Take the author and the `videos.pexels.com/video-files/<id>/<id>-<variant>.mp4` URL.
+  - Cut only the seconds you need with `scripts/stock_segment.sh`; never download the whole clip.
+- Record every clip in `licenses.md`: id, author, URL and the seconds used.
+- Vet each clip:
+  - candid, with no watermark and no visible brands;
+  - fits the audience: region, age, household type.
+- Phones in stock footage usually face the person or show black screens. Don't composite UI onto them; cut to the rendered device instead.
+- Backups:
+  - **Mixkit** (thinner on some regions).
+  - **Avoid** aggregators that mix in AI-made or watermarked clips.
+  - **HeyGen stock search** is for mood boards only: low resolution, unclear licence.
+- Across a series, vary who's on screen so every audience segment sees themselves.
 
-## 2. AI hero shots: only the moment stock can't show
+## 2. AI hero shots: only for the moment stock can't show
 
-- **Gemini Omni 1.2 Flash** (`gemini-omni-1.2-flash`, Interactions API; Veo 3.1 Preview was retired 22 Oct 2026). Text-to-video, 3–6 s.
-- Always a **360p test take** (~$0.07–0.15), look at it, then **one 1080p final** (~$0.33–0.64). No retries without telling the owner.
-- No 1:1 output: generate 16:9 and centre-crop to 1080×1080.
-- Prompt: who (region, age, relationship), where (real local setting), the single action, light, "plain walls, no lettering, no logos". Generated phones can show glowing fake UI — blur/darken that region or cut away before the phone is readable.
-- Typical spend: one hero shot per lead video, $0.40 all-in.
+- **Model:** Gemini Omni (`gemini-omni-1.2-flash`, Interactions API), text-to-video, 3–6 s. It replaced Veo 3.1 Preview in Oct 2026.
+- **Test take:** always make a 360p test first (~$0.07–0.15) and look at it.
+- **Final:** then make one 1080p final (~$0.33–0.64). Don't retry without telling the owner.
+- **Aspect:** output is 16:9 or 9:16 only. For square or another aspect, crop around the subject.
+- **Prompt:** cover who (region, age, relationship), where (a real local setting), the single action, and the light. Add "plain walls, no lettering, no logos".
+- Generated phones and laptops show glowing fake UI. Blur or darken that area, or cut away before it's readable.
 
-## 3. App screens: real captures on a rendered phone
+## 3. Product screens: real captures on a rendered device
 
-- Captures come from the app's native integration tests (iOS, light mode, full resolution, demo data). Remove test-only banners (e.g. "You're offline") by filling with the surrounding surface colour — never alter content.
-- **Phone shots:** `scripts/blender_phone_shot.py` (Blender 5.x headless, EEVEE, Standard view transform so UI colours stay exact). `scripts/blender_retexture.py` swaps the capture in a saved .blend. Blender MCP needs `BLENDER_PATH` set and an open Blender with the add-on; headless scripts are more repeatable.
-- **Flat highlight scenes:** the capture itself, full frame, with camera moves and highlights (see highlights.md). These carry the feature explanation.
+- **Source:** captures come from the product itself, from integration or UI test runs, a staging build, or exports from the design system, all with demo data.
+- **Clean-up:**
+  - Remove test-only overlays by filling them with the surrounding surface colour. Never alter the content.
+  - Paint out third-party brands, share buttons and toasts the same way.
+- **Device shots:**
+  - `scripts/blender_phone_shot.py` uses Blender 5.x headless with EEVEE. Its Standard view transform keeps UI colours exact.
+  - `scripts/blender_retexture.py` swaps the capture in a saved .blend.
+  - For a laptop or tablet, adapt the device mesh and screen aspect.
+  - Blender MCP needs `BLENDER_PATH` set and Blender open with the add-on; headless scripts are more repeatable.
+- **Flat highlight scenes:** the capture itself, full frame, with camera moves and highlights (see highlights.md). These scenes carry the feature explanation.
 
 ## 4. Voice
 
-- **Gemini TTS** (`gemini-3.8-flash-tts`) with a regional Extended Voice Library voice. List voices free: `GET /v1beta/voices?language_code=en-ZA`. Dueo uses `en-za-csagent-7` (Cape Town English, warm, conversational).
-- One call per video: all lines in one input separated by `<long pause>`, then split with `scripts/vo_segments.py` against a Whisper transcript. ~$0.005 per video.
-- Expect the transcriber to mishear accents and brand names ("Dueo" → "Duo", "bill" → "bull"). Flag them for the owner to check by ear; re-voice one video for ~$0.005.
-- Fallbacks: Kokoro (`npx hyperframes tts`, free, neutral American), macOS `say` (no regional voices).
+- **Model:** Gemini TTS (`gemini-3.8-flash-tts`), with a voice from the Extended Voice Library that matches the audience's accent.
+  - List voices for free: `GET /v1beta/voices?language_code=<xx-YY>`.
+- **One call per video:** put all lines in one input, separated by `<long pause>`. Split the audio with `scripts/vo_segments.py` against a Whisper transcript. Costs about $0.005 per video.
+- **Expect mishearings:** transcribers trip on accents and product names. Flag those lines for the owner to check by ear; re-voicing a whole video costs about $0.005.
+- **Fallbacks:**
+  - Kokoro (`npx hyperframes tts`): free, neutral American.
+  - macOS `say`: few regional voices.
+  - For a hero cut, a human voice artist is still worth it.
 
 ## 5. Music and sound
 
-- HeyGen music catalog via `media-use resolve --type bgm` (free with sign-in) or a quiet piano/guitar bed. No lyrics under VO. Duck under voice.
+- Use the HeyGen music catalog via `media-use resolve --type bgm` (free with sign-in), or a quiet instrumental bed.
+- No lyrics under a voiceover, and duck the music beneath the voice.
 
 ## 6. Edit, QA and output
 
-- **HyperFrames** for the edit (seek-safe renders, brand system, check/snapshot QA, per-line audio placement). ~20 s per 30 s render. Remotion is faster for single UI shots but flat.
-- Output: 1080×1080, 30 fps, H.264, loudnorm to −14 LUFS. Contact sheet PNG per cut.
-- End card on every video: trial line ("Try it free for 3 days"), "Download <App> · App Store · Google Play · <domain>", fine print ("N-day free trial for new subscribers. Then billed by the App Store or Google Play until you cancel.").
-- Captions burned in (most people watch muted); hook readable at frame 0, inside the middle 80%.
+- **Edit in HyperFrames.** It gives seek-safe renders, check and snapshot QA, and per-line audio placement. A 30 s video renders in about 20 s. Remotion is faster for a single UI shot but looks flat.
+- **Output:** the agreed aspect(s), 30 fps, H.264, loudness normalised to −14 LUFS, plus a contact-sheet PNG per cut.
+- **Captions:** burned in, because most people watch muted. The hook must be readable at frame 0, inside the middle 80% of the frame.
+- **End card:** the offer (trial, price or download), store badges or the domain, and any fine print the stores or the law require for that offer.
 
 ## Didn't work (Nov 2026)
 
-- Gemini free tier: 429 limit 0 for image/video/music; needs prepaid credit (402 when depleted).
-- "Imagen 2.6" doesn't exist; Imagen 4 retired — Nano Banana 2.1 replaces it.
-- codex-imagegen: tool unavailable in session.
-- HeyGen generation and voices: need a paid HyperFrames plan.
+- **Gemini free tier:** returns 429 with limit 0 for image, video and music. It needs prepaid credit, and returns 402 when the credit runs out.
+- **Imagen:** Imagen 4 was retired; Nano Banana 2.1 replaces it.
+- **Codex image generation:** the tool wasn't available in the session.
+- **HeyGen generation and voices:** need a paid HyperFrames plan.
+
+See `examples/dueo-series/tool-log.md` for the full comparison.

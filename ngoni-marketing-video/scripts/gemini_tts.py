@@ -2,7 +2,7 @@
 """One Gemini TTS call through the Interactions API. Exactly one request: no retries, no loops.
 
 The key is read from the GEMINI_API_KEY environment variable only; it is never printed or written.
-Usage: GEMINI_API_KEY=... gemini_tts.py --model gemini-3.8-flash-tts --voice en-za-csagent-7 \
+Usage: GEMINI_API_KEY=... gemini_tts.py --model gemini-3.8-flash-tts --voice <voice-id> \
          --style "warm, conversational" --out out.wav "text"
 Prints one JSON line with the model, voice, http status, seconds, usage and audio duration, or the API error.
 """
