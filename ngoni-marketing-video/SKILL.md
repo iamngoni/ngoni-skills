@@ -16,19 +16,28 @@ A stock-only video costs about the price of its voiceover, a fraction of a cent.
 Every project has its own rules. Find them first; ask only for what you can't find.
 
 1. **Read the project.** Look at its AGENTS.md/README, store listing, website copy, localisation strings, any existing `marketing/` folder and the brand assets (colours, fonts, logo). Note any product claims the project forbids.
-2. **Settle the defaults** below. Use what the project or owner already decided, and ask about the rest in one short message:
-   - **Format:** aspect ratio(s) and length. The default is 1:1 square at 20–30 s; add 9:16 only if asked.
-   - **Audience:** segments, region and language, and the voice accent that fits.
-   - **Offer and end card:** trial, price or plain download? Store badges and domain?
-   - **Budget:** total, per-video cap and reserve. If the owner hasn't set one, propose one and wait.
-   - **Captures:** where the real UI screenshots or recordings come from (test runs, a design tool, a staging app), and who takes them.
-   - **Where scripts live:** the repo, a notes app or a doc. Save one entry per video there.
-   - **Posting:** when it's allowed, for example only after the advertised features are live.
-3. **Write the project's rules down** next to the scripts, in a "00 rules" note or a `marketing/VIDEO_RULES.md`, so later batches reuse them. See `examples/dueo-series/README.md` for a filled-in set.
+2. **Ask the owner's preferences. Never assume them.** If a rules file from an earlier batch exists (step 3), reuse it and confirm only what's missing or what might have changed. Otherwise ask the questions below, using the agent's question tool if it has one. Ask in one round, offer the options, and allow "other". Each option shows a short trade-off, never a pre-picked answer, because the right choice differs by product.
+
+   | Preference | Options to offer |
+   |---|---|
+   | **Aspect ratio(s)** | 9:16 vertical (TikTok, Reels, Shorts native) · 1:1 square (feed and cross-platform, looks more "designed") · 4:5 (Instagram and Facebook feed) · 16:9 (YouTube, web) · several cuts from one edit (more QA per video) |
+   | **Length** | 6–10 s bumper · 15–20 s · 20–30 s story · 30–60 s explainer |
+   | **Look** | cinematic (real people, AI hero shots) · product-first (screens and motion graphics) · founder/UGC style · mix |
+   | **People on screen** | stock only · stock plus AI hero shots · AI only · none |
+   | **Voice** | AI voiceover (which accent and language) · on-screen text only · the owner's own recorded voice |
+   | **Audience** | segments, region and language, and who should appear on screen |
+   | **Offer and end card** | free trial (length) · price · plain download · waitlist, plus store badges, domain and required fine print |
+   | **Budget** | total, per-video cap and reserve |
+   | **Captures** | where the real UI comes from (test runs, staging app, design files) and who takes them |
+   | **Script home** | the repo, a notes app or a doc |
+   | **Approval and posting** | pitch-first or go ahead · when posting is allowed · who posts |
+
+   Say which preferences you inferred from the project, and let the owner correct them.
+3. **Write the answers down** as the project's video rules, next to the scripts: a "00 rules" note or `marketing/VIDEO_RULES.md`. Later batches start from that file. When the owner changes a preference mid-project (for example "square only from now on"), update the file straight away. See `examples/dueo-series/README.md` for a filled-in set.
 
 ## Always (any project)
 
-- **Pitch before you spend.** Get approval for each idea (hook, story, who's on screen, feature, cost) before any paid call or render.
+- **Spend only with consent.** Pitch each idea (hook, story, who's on screen, feature, cost) and wait for approval before any paid call or render, unless the owner chose "go ahead" within a budget.
 - **Show the real product.** Never generate or mock product UI, and never let AI footage show readable fake screens.
 - **Use no real third-party brands or personal data** on screen. Paint them out with the surrounding colour, or recapture with demo data.
 - **Match claims to the product.** Every number in captions, voiceover and highlights must equal the number on the capture. Keep required qualifiers on screen, such as "estimate" or "not advice".
@@ -38,7 +47,7 @@ Every project has its own rules. Find them first; ask only for what you can't fi
 ## Workflow
 
 1. **Ground truth.** Check which features have clean captures and which claims are allowed.
-2. **Pitch** 6–9 ideas using [references/script-template.md](references/script-template.md). Recommend a top 3 and an order, with dated or seasonal hooks first. Stop for approval.
+2. **Pitch** 6–9 ideas using [references/script-template.md](references/script-template.md). Recommend a top 3 and an order, with dated or seasonal hooks first. Stop for approval, unless the owner chose go-ahead; in that case, make the top 3 within budget and report.
 3. **Script** each approved video: 5–7 voiceover lines, the hook caption, captions per beat, the screens with their highlights, the end card and a claims check.
 4. **Captures.** Reuse what exists. Otherwise write one consolidated capture request (screen, exact state and demo data, theme, which video) for whoever owns the devices.
 5. **People.** Use licensed stock first. Add an AI hero shot only for a moment stock can't show.

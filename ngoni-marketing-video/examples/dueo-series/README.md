@@ -4,7 +4,7 @@ Dueo is a money-planning app for iOS and Android, made for South Africa first (Z
 
 ## Project rules (from the owner)
 
-- **Format:** square 1:1 only, 1080×1080, 20–27 s. No vertical cuts.
+- **Format:** square 1:1 only, 1080×1080, 20–27 s. The owner started with 9:16 plus 1:1, then found the square cuts looked better for this product and dropped vertical.
 - **Approval:** every new idea is pitched first and needs the owner's approval before anything is rendered.
 - **Script home:** each script is a note in the owner's Kanso notebook (Dueo › Marketing Scripts). `marketing/growth/content/video-scripts.md` in the repo stays in sync.
 - **Forbidden claims:** never say "bank balance", "connects to your bank" or "pays for you", and give no financial or tax advice.
